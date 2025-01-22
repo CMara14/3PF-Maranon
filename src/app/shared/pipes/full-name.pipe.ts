@@ -7,8 +7,11 @@ import { Student } from '../../modules/dashboard/pages/students/models';
 })
 
 export class FullNamePipe implements PipeTransform {
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
   transform(value: Student, ...args: unknown[]): unknown {
-    return `${value.lastName.toUpperCase()}, ${value.name}`;
+    return `${value.lastName.toUpperCase()}, ${this.capitalizeFirstLetter(value.name)}`;
   }
 }
 
