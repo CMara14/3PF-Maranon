@@ -1,0 +1,38 @@
+<div>
+    <h1 mat-dialog-title>{{ isEditing ? "Editar información" : "Crear usuario" }}</h1>
+    <div mat-dialog-content  class="studentForm">
+      <form [formGroup]="studentForm">
+        <div class="grid">
+          <div class="col-6">
+            <mat-form-field class="w-full">
+              <mat-label>Apellido</mat-label>
+              <input formControlName="lastName" matInput />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-full" appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input formControlName="name" matInput />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-full">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-full">
+              <mat-label>Teléfono</mat-label>
+              <input formControlName="phoneNumber" matInput />
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div mat-dialog-actions>
+      <button mat-dialog-close mat-button>Cancelar</button>
+      <button (click)="onSubmit()" mat-button>Guardar</button>
+    </div>
+</div>

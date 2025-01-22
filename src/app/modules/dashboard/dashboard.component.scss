@@ -1,0 +1,24 @@
+.example-container {
+    height: 100vh;
+  }
+  
+  .example-sidenav-content {
+    height: 100%;
+    background-color: #F5EFE7;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D8C4B6;
+  }
+
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    padding: 20px;
+  }
