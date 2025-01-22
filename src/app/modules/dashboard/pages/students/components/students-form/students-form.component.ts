@@ -23,7 +23,7 @@ export class StudentsFormComponent {
       name: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
       email: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(15)]],
     });
 
     if (!!data) {

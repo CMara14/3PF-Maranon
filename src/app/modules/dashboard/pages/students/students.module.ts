@@ -12,9 +12,10 @@ import { StudentsFormComponent } from './components/students-form/students-form.
 import { MatInputModule } from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { SharedModule } from '../../../../shared/shared.module';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [StudentsComponent,  StudentsFormComponent],
+  declarations: [StudentsComponent,  StudentsFormComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     StudentsRoutingModule,
