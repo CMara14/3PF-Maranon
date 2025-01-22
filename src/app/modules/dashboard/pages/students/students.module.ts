@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,12 +10,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsFormComponent } from './components/students-form/students-form.component';
 import { MatInputModule } from '@angular/material/input';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '../../../../shared/shared.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [StudentsComponent,  StudentsFormComponent, ConfirmDialogComponent],
+  declarations: [
+    StudentsComponent,
+    StudentsFormComponent,
+    ConfirmDialogComponent,
+  ],
   imports: [
     CommonModule,
     StudentsRoutingModule,
@@ -27,10 +32,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ReactiveFormsModule,
     MatDialogModule,
     MatTooltipModule,
+    MatSnackBarModule,
     SharedModule,
   ],
-  exports: [
-    StudentsComponent,
-  ],
+  exports: [StudentsComponent],
 })
-export class StudentsModule { }
+export class StudentsModule {}
