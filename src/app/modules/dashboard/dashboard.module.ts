@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { StudentsModule } from './pages/students/students.module';
+import { SharedModule } from '../../shared/shared.module';
+import { CoursesModule } from './pages/courses/courses.module';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +15,12 @@ import { StudentsModule } from './pages/students/students.module';
     ToolbarComponent,
   ],
   imports: [
-    StudentsModule,
     CommonModule,
     DashboardRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
+    SharedModule,
+    StudentsModule,
+    CoursesModule,
+    HomeModule
   ],
   exports: [DashboardComponent],
 })
