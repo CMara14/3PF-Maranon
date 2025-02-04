@@ -1,32 +1,12 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <app-navbar></app-navbar>
-    <!-- <div class="example-button-container">
-      <button mat-fab extended>
-        <mat-icon>home</mat-icon>
-        HOME
-      </button>
-    </div>
-    <div class="example-button-container">
-      <button mat-fab extended>
-        <mat-icon>groups</mat-icon>
-        STUDENTS
-      </button>
-    </div>
-    <div class="example-button-container">
-      <button mat-fab extended>
-        <mat-icon>school</mat-icon>
-        COURSES
-      </button>
-    </div> -->
   </mat-drawer>
 
   <div class="example-sidenav-content">
     <app-toolbar (showNavbar)="drawer.toggle()" />
     <main style="padding: 1rem">
-      <!-- <app-students></app-students> -->
-      <app-courses></app-courses>
-      <app-home></app-home>
+      <router-outlet />
     </main>
   </div>
 </mat-drawer-container>

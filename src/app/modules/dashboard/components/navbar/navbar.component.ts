@@ -8,18 +8,26 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  linkItems: { label: string; routerLink: string }[] = [
+  linkItems: { label: string; routerLink: string; icon: string; }[] = [
     {
       label: 'Inicio',
       routerLink: 'home',
+      icon: '',
     },
     {
       label: 'Estudiantes',
       routerLink: 'students',
+      icon: '',
     },
     {
       label: 'Cursos',
       routerLink: 'courses',
+      icon: '',
+    },
+    {
+      label: '',
+      routerLink: 'auth/login',
+      icon: 'logout',
     },
   ];
 

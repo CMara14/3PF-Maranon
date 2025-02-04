@@ -1,12 +1,13 @@
 <mat-nav-list>
     @for (item of linkItems; track $index) {
-        <a
-          [routerLink]="item.routerLink"
-          routerLinkActive
-          #linkItem="routerLinkActive"
-          [activated]="linkItem.isActive"
-          mat-list-item
-        >
+      <a
+      [routerLink]="item.routerLink"
+      routerLinkActive
+      #linkItem="routerLinkActive"
+      [activated]="linkItem.isActive"
+      mat-list-item
+      >
+      <mat-icon matListItemIcon> {{ item.icon }}</mat-icon>
           {{ item.label }}
         </a>
         }
