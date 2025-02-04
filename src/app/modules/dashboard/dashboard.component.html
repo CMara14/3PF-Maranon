@@ -1,6 +1,7 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <div class="example-button-container">
+    <app-navbar></app-navbar>
+    <!-- <div class="example-button-container">
       <button mat-fab extended>
         <mat-icon>home</mat-icon>
         HOME
@@ -17,7 +18,7 @@
         <mat-icon>school</mat-icon>
         COURSES
       </button>
-    </div>
+    </div> -->
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -28,5 +29,4 @@
       <app-home></app-home>
     </main>
   </div>
-
 </mat-drawer-container>

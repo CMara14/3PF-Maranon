@@ -8,11 +8,13 @@ import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
 import { CoursesModule } from './pages/courses/courses.module';
 import { HomeModule } from './pages/home/home.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ToolbarComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,

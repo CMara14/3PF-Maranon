@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [FullNamePipe, TitleFontDirective],
@@ -31,6 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatListModule,
   ],
 })
 export class SharedModule {}
