@@ -21,6 +21,13 @@
   <ng-container matColumnDef="options">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
+      <button matTooltip="Detalle estudiante" mat-icon-button  [routerLink]="element.id"
+      [queryParams]="{
+        name: element.name,
+        lastName: element.lastName
+      }">
+        <mat-icon>visibility</mat-icon>
+      </button>
       <button matTooltip="Editar estudiante" (click)="handleEditStudent(element)" mat-icon-button>
         <mat-icon>edit</mat-icon>
       </button>
