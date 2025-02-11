@@ -14,6 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [FullNamePipe, TitleFontDirective],
@@ -33,6 +35,7 @@ import {MatListModule} from '@angular/material/list';
     MatTooltipModule,
     MatSnackBarModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class SharedModule {}

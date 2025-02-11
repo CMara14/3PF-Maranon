@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Student } from './models';
-import { STUDENTS_DATA } from './mocks/students';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsFormComponent } from './components/students-form/students-form.component';
 import { v4 as uuidv4 } from 'uuid';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { StudentsService } from '../../../../core/services/students.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -15,16 +16,48 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss',
 })
-export class StudentsComponent {
+export class StudentsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'email', 'phoneNumber', 'options'];
-  students = STUDENTS_DATA;
   editingStudentId: string | null = null;
-
+  students: Student[] = [];
+  selectedStudent: any;
+  isLoading = false;
+  error = false;
+  studentsSubscription?: Subscription;
   constructor(
     private fb: FormBuilder,
     private matDialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private studentsService: StudentsService
   ) {}
+
+  ngOnDestroy(): void {
+    this.studentsSubscription?.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.loadStudents();
+  }
+
+  loadStudents(): void {
+    this.isLoading = true;
+    this.studentsSubscription = this.studentsService
+      .getStudents()
+      .subscribe({
+        next: (students: Student[]) => {
+          this.students = [...students];
+          this.isLoading = false;
+        },
+        error: (error) => {
+          this.error = true;
+          this.isLoading = false;
+        },
+        complete: () => {
+          this.isLoading = false;
+        },
+      });
+  }
+
   showNotification(message: string): void {
     this.snackBar.open(message, '', {
       duration: 5000,
@@ -32,7 +65,18 @@ export class StudentsComponent {
       verticalPosition: 'bottom',
     });
   }
-  handleDeleteStudent(id: string) {
+
+  handleStudentsDataUpdate(data: Student[]): void {
+    this.students = [...data];
+  }
+
+  handleStudentDetail(id: string) {
+    this.studentsService.getStudentById(id).subscribe((student) => {
+      this.selectedStudent = student;
+    });
+  }
+
+  handleDeleteStudent(id: string): void {
     const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
       width: '400px',
       data: 'Esta acción no se puede deshacer.',
@@ -40,53 +84,77 @@ export class StudentsComponent {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.students = this.students.filter((student) => student.id !== id);
-        this.showNotification('El estudiante ha sido eliminado con éxito.');
+        this.isLoading = true;
+        this.studentsService.deleteStudent(id).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.handleStudentsDataUpdate(data);
+          },
+          error: (err) => {
+            this.isLoading = false;
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.showNotification('El estudiante ha sido eliminado con éxito.');
+          },
+        });
       }
     });
   }
-  handleEditStudent(student: Student): void {
-    this.editingStudentId = student.id;
 
+  openFormDialog(student?: Student): void {
     this.matDialog
-      .open(StudentsFormComponent, {
-        data: student,
-      })
+    .open(StudentsFormComponent, {
+      data: student,
+    })
       .afterClosed()
       .subscribe({
-        next: (formValue) => {
-          if (!!formValue) {
-            this.students = this.students.map((student) =>
-              student.id === this.editingStudentId
-                ? { ...student, ...formValue }
-                : student
-            );
-            this.editingStudentId = null;
-            this.showNotification(
-              'El estudiante ha sido actualizado con éxito.'
-            );
+        next: (data) => {
+          if (!!data) {
+            if (!!student) {
+              this.handleEditStudent(student.id, data);
+            } else {
+              this.handleCreateStudent(data);
+            }
           }
         },
       });
   }
 
-  handleCreateStudent(): void {
-    this.matDialog
-      .open(StudentsFormComponent)
-      .afterClosed()
-      .subscribe({
-        next: (formValue) => {
-          if (!!formValue) {
-            this.students = [
-              ...this.students,
-              {
-                id: uuidv4(),
-                ...formValue,
-              },
-            ];
-            this.showNotification('El estudiante ha sido creado con éxito.');
-          }
-        },
-      });
+  handleEditStudent(id: string, data: {
+    name: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
+  }) {
+    this.isLoading = true;
+    this.studentsService.updateStudent(id, data).subscribe({
+      next: (data) => this.handleStudentsDataUpdate(data),
+      error: (err) => (this.isLoading = false),
+      complete: () => {
+        this.isLoading = false
+        this.showNotification(
+          'El estudiante ha sido actualizado con éxito.'
+        );
+      },
+    });
+  }
+
+  handleCreateStudent(data: {
+    name: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
+  }): void {
+    this.isLoading = true;
+    this.studentsService.addStudent(data).subscribe({
+      next: (data) => this.handleStudentsDataUpdate(data),
+      error: (err) => (this.isLoading = false),
+      complete: () => {
+        this.isLoading = false
+        this.showNotification('El estudiante ha sido creado con éxito.');
+      },
+      
+    });
   }
 }
