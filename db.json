@@ -1,0 +1,55 @@
+{
+  "students": [
+    [
+      {
+        "id": "1vgs3",
+        "name": "Henry",
+        "lastName": "Frazier",
+        "email": "henry.frazier@example.com",
+        "phoneNumber": 491614419
+      },
+      {
+        "id": "erw42",
+        "name": "Kathy",
+        "lastName": "Collins",
+        "email": "kathy.collins@example.com",
+        "phoneNumber": 812336521
+      },
+      {
+        "id": "3fde5",
+        "name": "Denise",
+        "lastName": "Lacroix",
+        "email": "denise.lacroix@example.com",
+        "phoneNumber": 783864733
+      },
+      {
+        "id": "gt8y4",
+        "name": "Geraldine",
+        "lastName": "Duarte",
+        "email": "geraldine.duarte@example.com",
+        "phoneNumber": 5427351572
+      },
+      {
+        "id": "5f4gh",
+        "name": "Dwight",
+        "lastName": "Vargas",
+        "email": "wight.vargas@example.com",
+        "phoneNumber": 7755205614
+      },
+      {
+        "id": "hgt76",
+        "name": "Antony",
+        "lastName": "Petersen",
+        "email": "anton.petersen@example.com",
+        "phoneNumber": 26155813
+      }
+    ],
+    {
+      "id": "b31e",
+      "name": "Juan",
+      "lastName": "Lopez",
+      "email": "juan.lopez@gmail.com",
+      "phoneNumber": "3435678906"
+    }
+  ]
+}

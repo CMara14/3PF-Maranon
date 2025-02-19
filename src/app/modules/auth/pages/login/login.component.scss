@@ -3,5 +3,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #3E5879;
     width: 100%;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
 }
