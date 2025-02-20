@@ -1,0 +1,16 @@
+@if (isLoading) {
+    <mat-spinner></mat-spinner>
+    } @else { @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+    } @else {
+    <h2>{{ course?.name }}</h2>
+    
+    <h4>Profesores:</h4>
+    
+    <mat-list>
+      @for (teacher of course?.teachers; track $index) {
+      <mat-list-item>{{ teacher.name }}</mat-list-item>
+      }
+    </mat-list>
+    } }
+    

@@ -1,55 +1,129 @@
 {
   "students": [
-    [
-      {
-        "id": "1vgs3",
-        "name": "Henry",
-        "lastName": "Frazier",
-        "email": "henry.frazier@example.com",
-        "phoneNumber": 491614419
-      },
-      {
-        "id": "erw42",
-        "name": "Kathy",
-        "lastName": "Collins",
-        "email": "kathy.collins@example.com",
-        "phoneNumber": 812336521
-      },
-      {
-        "id": "3fde5",
-        "name": "Denise",
-        "lastName": "Lacroix",
-        "email": "denise.lacroix@example.com",
-        "phoneNumber": 783864733
-      },
-      {
-        "id": "gt8y4",
-        "name": "Geraldine",
-        "lastName": "Duarte",
-        "email": "geraldine.duarte@example.com",
-        "phoneNumber": 5427351572
-      },
-      {
-        "id": "5f4gh",
-        "name": "Dwight",
-        "lastName": "Vargas",
-        "email": "wight.vargas@example.com",
-        "phoneNumber": 7755205614
-      },
-      {
-        "id": "hgt76",
-        "name": "Antony",
-        "lastName": "Petersen",
-        "email": "anton.petersen@example.com",
-        "phoneNumber": 26155813
-      }
-    ],
+    {
+      "id": "1vgs3",
+      "name": "Henry",
+      "lastName": "Frazier",
+      "email": "henry.frazier@example.com",
+      "phoneNumber": 491614419
+    },
+    {
+      "id": "erw42",
+      "name": "Kathy",
+      "lastName": "Collins",
+      "email": "kathy.collins@example.com",
+      "phoneNumber": 812336521
+    },
+    {
+      "id": "3fde5",
+      "name": "Denise",
+      "lastName": "Lacroix",
+      "email": "denise.lacroix@example.com",
+      "phoneNumber": 783864733
+    },
+    {
+      "id": "gt8y4",
+      "name": "Geraldine",
+      "lastName": "Duarte",
+      "email": "geraldine.duarte@example.com",
+      "phoneNumber": 5427351572
+    },
+    {
+      "id": "5f4gh",
+      "name": "Dwight",
+      "lastName": "Vargas",
+      "email": "wight.vargas@example.com",
+      "phoneNumber": 7755205614
+    },
+    {
+      "id": "hgt76",
+      "name": "Antony",
+      "lastName": "Petersen",
+      "email": "anton.petersen@example.com",
+      "phoneNumber": 26155813
+    },
     {
       "id": "b31e",
       "name": "Juan",
       "lastName": "Lopez",
       "email": "juan.lopez@gmail.com",
       "phoneNumber": "3435678906"
+    }
+  ],
+  "users": [
+    {
+      "id": "vnD3s",
+      "email": "admin@email.com",
+      "password": "admin",
+      "name": "Administrador",
+      "accessToken": "4e84a2a3e2f56b3558c6dfaacdd49ea81a40c6c0be1bfd1b7a1a1dd66a53f829",
+      "role": "ADMIN"
+    },
+    {
+      "id": "avs3D",
+      "email": "employee@email.com",
+      "password": "user",
+      "name": "Empleado",
+      "accessToken": "90a6fe412b43446dfb144984cc54b16a494a439ea257f08b7bd170537ec3d7a1",
+      "role": "EMPLOYEE"
+    }
+  ],
+  "courses": [
+    {
+      "id": "9de2",
+      "name": "Desarrollo Web"
+    },
+    {
+      "id": "4b15",
+      "name": "Marketing"
+    },
+    {
+      "id": "ac8e",
+      "name": "Testing"
+    },
+    {
+      "id": "df06",
+      "name": "Diseño UX/UI"
+    },
+    {
+      "id": "4b16",
+      "name": "Data Science"
+    },
+    {
+      "id": "bad9",
+      "name": "Inglés"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "6b0357c1",
+      "name": "Florencia Eberle",
+      "courseId": "4b15"
+    },
+    {
+      "id": "eb5e50dc",
+      "name": "Noemi Sanchez",
+      "courseId": "9de2"
+    },
+    {
+      "id": "52b31b15",
+      "name": "Adrian Morel",
+      "courseId": "bad9"
+    },
+    {
+      "id": "c13bb6a8",
+      "name": "Marcos Jiménez",
+      "courseId": "4b16"
+    },
+    {
+      "id": "6f9cdbf2",
+      "name": "Eliana Lopez",
+      "courseId": "ac8e"
+    },
+    {
+      "id": "2f684ce2",
+      "name": "Ana Molina",
+      "courseId": "df06"
     }
   ]
 }

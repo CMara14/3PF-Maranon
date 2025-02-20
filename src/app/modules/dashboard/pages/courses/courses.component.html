@@ -1,1 +1,15 @@
-<p>courses works!</p>
+<h2>Cursos</h2>
+@if (isLoading) {
+<mat-spinner />
+} @else {
+
+<button *ngIf="isAdmin$ | async" (click)="openFormDialog()" mat-icon-button>
+  <mat-icon>post_add</mat-icon>
+</button>
+
+<app-courses-list
+  [dataSource]="dataSource"
+  (delete)="onDelete($event)"
+  (edit)="openFormDialog($event)"
+/>
+}

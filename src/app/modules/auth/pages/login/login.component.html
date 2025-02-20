@@ -4,8 +4,7 @@
       <h3>Iniciar sesión</h3>
     </mat-card-header>
     <mat-card-content>
-      <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action=""> -->
-        <form [formGroup]="loginForm"  action="">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="">
         <mat-form-field class="col align-self-center">
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput />
@@ -14,7 +13,7 @@
           <mat-label>Constraseña</mat-label>
           <input type="password" formControlName="password" matInput />
         </mat-form-field>
-        <button routerLink="/dashboard/home" mat-flat-button>
+        <button routerLink="/dashboard/home" mat-flat-button type="submit">
           Iniciar Sesión
         </button>
       </form>

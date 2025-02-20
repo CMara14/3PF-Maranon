@@ -1,10 +1,8 @@
 export interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    token: string;
-    role: string;
-    createdAt: Date;
-  }
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  accessToken: string;
+  role: 'ADMIN' | 'EMPLOYEE';
+}
