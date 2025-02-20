@@ -9,7 +9,7 @@
 
 <app-courses-list
   [dataSource]="dataSource"
-  (delete)="onDelete($event)"
+  (delete)="handleDeleteCourse($event)"
   (edit)="openFormDialog($event)"
 />
 }

@@ -3,7 +3,6 @@ import { Student } from './models';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsFormComponent } from './components/students-form/students-form.component';
-import { v4 as uuidv4 } from 'uuid';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { StudentsService } from '../../../../core/services/students.service';

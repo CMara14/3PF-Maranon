@@ -70,16 +70,8 @@
   ],
   "courses": [
     {
-      "id": "9de2",
-      "name": "Desarrollo Web"
-    },
-    {
       "id": "4b15",
       "name": "Marketing"
-    },
-    {
-      "id": "ac8e",
-      "name": "Testing"
     },
     {
       "id": "df06",
@@ -92,6 +84,14 @@
     {
       "id": "bad9",
       "name": "Inglés"
+    },
+    {
+      "id": "cdbc",
+      "name": "Testing"
+    },
+    {
+      "id": "fa77",
+      "name": "Programación web"
     }
   ],
   "teachers": [
@@ -103,7 +103,7 @@
     {
       "id": "eb5e50dc",
       "name": "Noemi Sanchez",
-      "courseId": "9de2"
+      "courseId": null
     },
     {
       "id": "52b31b15",
@@ -118,7 +118,7 @@
     {
       "id": "6f9cdbf2",
       "name": "Eliana Lopez",
-      "courseId": "ac8e"
+      "courseId": null
     },
     {
       "id": "2f684ce2",
