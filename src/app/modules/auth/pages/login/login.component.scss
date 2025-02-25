@@ -7,7 +7,21 @@
     width: 100%;
 }
 
-.login-card {
+.login-form {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+}
+
+.mat-mdc-card {
+    max-width: 400px;
+}
+
+.mat-mdc-card-header {
+    padding-bottom: 25px;
+}
+
+.submit-button {
+    max-width: 150px;
+    margin: 20px auto 0;
 }
