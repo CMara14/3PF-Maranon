@@ -1,11 +1,16 @@
   <mat-toolbar class="toolbar-container">
-    <button
-      (click)="showNavbar.emit()"
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Students App</span>
+    <div class="app-menu">
+      <button
+        (click)="showNavbar.emit()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Students App</span>
+    </div>
+    <div>
+      <div>{{ authUserName$ | async }}</div>
+    </div>
   </mat-toolbar>

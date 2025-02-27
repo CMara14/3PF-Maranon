@@ -3,33 +3,24 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { User } from '../../modules/dashboard/pages/users/models';
 import { Router } from '@angular/router';
 import { LoginData } from '../../modules/auth/models';
-import { v4 as uuidv4 } from 'uuid';
-
-const FAKE_USERS_DB: User[] = [
-  {
-    id: uuidv4(),
-    email: 'admin@email.com',
-    password: 'admin',
-    name: 'Administrador',
-    accessToken: '4e84a2a3e2f56b3558c6dfaacdd49ea81a40c6c0be1bfd1b7a1a1dd66a53f829',
-    role: 'ADMIN',
-  },
-  {
-    id: uuidv4(),
-    email: 'employee@email.com',
-    password: 'empleado',
-    name: 'Empleado',
-    accessToken: '90a6fe412b43446dfb144984cc54b16a494a439ea257f08b7bd170537ec3d7a1',
-    role: 'EMPLOYEE',
-  },
-];
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from '../../store/auth/auth.selectors';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { AuthActions } from '../../store/auth/auth.action';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _authUser$ = new BehaviorSubject<null | User>(null);
   authUser$ = this._authUser$.asObservable();
 
-  constructor(private router: Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private store: Store
+  ) {
+    this.authUser$ = this.store.select(selectAuthUser);
+  }
 
   get isAdmin$(): Observable<boolean> {
     return this.authUser$.pipe(map((x) => x?.role === 'ADMIN'));
@@ -37,33 +28,54 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('access_token');
-    this._authUser$.next(null);
+    this.store.dispatch(AuthActions.unsetAuthUser());
     this.router.navigate(['auth', 'login']);
   }
 
   login(payload: LoginData): void {
-    const loginResult = FAKE_USERS_DB.find(
-      (user) =>
-        user.email === payload.email && user.password === payload.password
-    );
-    if (!loginResult) {
-      alert('Email o password invalidos');
-      return;
-    }
-    localStorage.setItem('access_token', loginResult.accessToken);
-    this._authUser$.next(loginResult);
-    this.router.navigate(['dashboard', 'home']);
+    this.httpClient
+    .get<User[]>(
+      `${environment.baseApiUrl}/users?email=${payload.email}&password=${payload.password}`
+    )
+    .subscribe({
+      next: (response) => {
+        if (!response[0]) {
+          //TODO agregar toast
+          alert('Email o password invalidos');
+        } else {
+          localStorage.setItem('access_token', response[0].accessToken);
+          this.store.dispatch(
+            AuthActions.setAuthUser({ user: response[0] })
+          );
+          this.router.navigate(['dashboard', 'home']);
+        }
+      },
+      //TODO agregar toast y tipos de error
+      error: (err) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 0) {
+            alert('El servidor esta caido');
+          }
+        }
+      },
+    });
   }
 
   isAuthenticated(): Observable<boolean> {
-    /**
-     * authUser = null entonces quiero retornar false
-     * authUSer != null entonces quiero retornar true
-     */
-    const storegeUser = FAKE_USERS_DB.find(
-      (x) => x.accessToken === localStorage.getItem('access_token')
-    );
-    this._authUser$.next(storegeUser || null);
-    return this.authUser$.pipe(map((x) => !!x));
+  return this.httpClient
+  .get<User[]>(
+    `${environment.baseApiUrl}/users?accessToken=${localStorage.getItem(
+      'access_token'
+    )}`
+  )
+  .pipe(
+    map((res) => {
+      const user = res[0];
+      if (user) {
+        this.store.dispatch(AuthActions.setAuthUser({ user: user }));
+      }
+      return !!user;
+    })
+  );
   }
 }
