@@ -12,24 +12,11 @@ let data = STUDENTS_DATA;
   providedIn: 'root',
 })
 export class StudentsService {
-  // private studentsUrl: string = 'public/students.json';
   constructor(private httpClient: HttpClient, private store: Store) {}
-
-  // getStudents(): Observable<Student[]> {
-  //   return of([...data]).pipe(delay(2000));
-  // }
-
   getStudents(): Observable<Student[]> {
     return this.httpClient.get<Student[]>(`${environment.baseApiUrl}/students`);
   }
 
-  // getStudentById(studentId: string): Observable<any> {
-  //   return this.http
-  //     .get<Student[]>(this.studentsUrl)
-  //     .pipe(
-  //       map((students) => students.find((student) => student.id === studentId))
-  //     );
-  // }
   getStudentById(studentId: string): Observable<Student> {
     return this.httpClient.get<Student>(
       `${environment.baseApiUrl}/students/${studentId}`
@@ -40,21 +27,6 @@ export class StudentsService {
     data = data.filter((student) => student.id != id);
     return this.getStudents();
   }
-
-  // updateStudent(
-  //   id: string,
-  //   formData: {
-  //     name: string;
-  //     lastName: string;
-  //     email: string;
-  //     phoneNumber: number;
-  //   }
-  // ): Observable<Student[]> {
-  //   data = data.map((student: Student) =>
-  //     student.id === id ? { ...student, ...formData } : student
-  //   );
-  //   return this.getStudents();
-  // }
 
   updateStudent(
     id: string,
@@ -70,18 +42,6 @@ export class StudentsService {
       .pipe(concatMap(() => this.getStudents()));
   }
 
-  // addStudent(payload: {
-  //   name: string;
-  //   lastName: string;
-  //   email: string;
-  //   phoneNumber: number;
-  // }): Observable<Student[]> {
-  //   data.push({
-  //     ...payload,
-  //     id: uuidv4(),
-  //   });
-  //   return this.getStudents();
-  // }
   addStudent(payload: {
     name: string;
     lastName: string;

@@ -32,7 +32,7 @@ export class AuthService {
     this.router.navigate(['auth', 'login']);
   }
 
-  login(payload: LoginData): void {
+  login(payload: LoginData, next?: () => void): void {
     this.httpClient
     .get<User[]>(
       `${environment.baseApiUrl}/users?email=${payload.email}&password=${payload.password}`
@@ -48,6 +48,10 @@ export class AuthService {
             AuthActions.setAuthUser({ user: response[0] })
           );
           this.router.navigate(['dashboard', 'home']);
+        }
+        
+        if (!!next) {
+          next();
         }
       },
       //TODO agregar toast y tipos de error

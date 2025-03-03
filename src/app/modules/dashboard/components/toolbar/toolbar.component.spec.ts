@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ToolbarComponent } from './toolbar.component';
 import { SharedModule } from '../../../../shared/shared.module';
+import { AuthService } from '../../../../core/services/auth.service';
+import { MockProvider } from 'ng-mocks';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -11,6 +13,7 @@ describe('ToolbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ToolbarComponent],
       imports: [SharedModule],
+      providers: [MockProvider(AuthService), provideMockStore({})],
     })
     .compileComponents();
 
@@ -20,8 +23,15 @@ describe('ToolbarComponent', () => {
   });
 
   it('should instantiate the component', () => {
-    const fixture = TestBed.createComponent(ToolbarComponent);
-    expect(fixture.componentInstance).toBeTruthy();
+    expect(component).toBeTruthy();
+  });
+
+  it('should emit showNavbar event when called', () => {
+    spyOn(component.showNavbar, 'emit');
+
+    component.showNavbar.emit();
+
+    expect(component.showNavbar.emit).toHaveBeenCalled();
   });
 
 });
