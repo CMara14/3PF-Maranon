@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     MatListModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
   ],
 })
 export class SharedModule {}

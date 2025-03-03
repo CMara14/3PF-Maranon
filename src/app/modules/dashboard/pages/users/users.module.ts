@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+import { StoreModule } from '@ngrx/store';
+import { userFeature } from './store/user.reducer';
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { UsersComponent } from './users.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    StoreModule.forFeature(userFeature)
   ]
 })
 export class UsersModule { }

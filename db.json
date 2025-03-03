@@ -2,14 +2,14 @@
   "students": [
     {
       "id": "1vgs3",
-      "name": "Henry",
+      "name": "Joaquín",
       "lastName": "Frazier",
       "email": "henry.frazier@example.com",
       "phoneNumber": 491614419
     },
     {
       "id": "erw42",
-      "name": "Kathy",
+      "name": "Brenda",
       "lastName": "Collins",
       "email": "kathy.collins@example.com",
       "phoneNumber": 812336521
@@ -30,14 +30,14 @@
     },
     {
       "id": "5f4gh",
-      "name": "Dwight",
+      "name": "Karen",
       "lastName": "Vargas",
       "email": "wight.vargas@example.com",
       "phoneNumber": 7755205614
     },
     {
       "id": "hgt76",
-      "name": "Antony",
+      "name": "Martín",
       "lastName": "Petersen",
       "email": "anton.petersen@example.com",
       "phoneNumber": 26155813
@@ -63,7 +63,7 @@
       "id": "avs3D",
       "email": "employee@email.com",
       "password": "user",
-      "name": "Empleado",
+      "name": "Usuario",
       "accessToken": "90a6fe412b43446dfb144984cc54b16a494a439ea257f08b7bd170537ec3d7a1",
       "role": "EMPLOYEE"
     }
@@ -124,6 +124,33 @@
       "id": "2f684ce2",
       "name": "Ana Molina",
       "courseId": "df06"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "adc33D",
+      "studentId": "1vgs3",
+      "courseId": "svDFj3"
+    },
+    {
+      "id": "c801",
+      "studentId": "gt8y4",
+      "courseId": "svDFs3"
+    },
+    {
+      "id": "86fa",
+      "studentId": "b31e",
+      "courseId": "svDFj3"
+    },
+    {
+      "id": "e218",
+      "studentId": "hgt76",
+      "courseId": "svDFs3"
+    },
+    {
+      "id": "a751",
+      "courseId": "d0797184-10ab-478c-a266-10e2028cfca1",
+      "studentId": "87c71bcc-20b1-451f-b165-e234010d3f56"
     }
   ]
 }

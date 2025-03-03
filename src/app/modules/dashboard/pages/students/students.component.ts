@@ -5,8 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentsFormComponent } from './components/students-form/students-form.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { StudentsService } from '../../../../core/services/students.service';
 import { Subscription } from 'rxjs';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students',

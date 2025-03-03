@@ -9,12 +9,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { CoursesModule } from './pages/courses/courses.module';
 import { HomeModule } from './pages/home/home.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ToolbarComponent,
     NavbarComponent,
+    EnrollmentsComponent,
   ],
   imports: [
     CommonModule,

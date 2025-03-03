@@ -30,6 +30,11 @@ export class NavbarComponent {
       routerLink: 'users',
       icon: '',
     },
+    {
+      label: 'Inscripciones',
+      routerLink: 'enrollments',
+      icon: '',
+    },
   ];
 
   constructor(private authService: AuthService) {}
