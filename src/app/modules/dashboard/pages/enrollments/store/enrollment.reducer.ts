@@ -18,8 +18,6 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-
-  // Leer listado...
   on(EnrollmentActions.loadEnrollments, (state) => {
     return {
       ...state,
@@ -42,7 +40,6 @@ export const reducer = createReducer(
     };
   }),
 
-  // Crear...
   on(EnrollmentActions.createEnrollment, (state, action) => {
     return {
       ...state,
@@ -65,10 +62,24 @@ export const reducer = createReducer(
     };
   }),
 
-  // Reset
+  on(EnrollmentActions.deleteEnrollment, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(EnrollmentActions.deleteEnrollmentSuccess, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+    enrollments: state.enrollments.filter((enrollment) => enrollment.id !== action.id), // Aquí estaba el error
+  })),
+  on(EnrollmentActions.deleteEnrollmentFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  })),
+
   on(EnrollmentActions.resetState, () => initialState),
 
-  // Proximamente...
   on(EnrollmentActions.loadEnrollmentsSuccess, (state, action) => state),
   on(EnrollmentActions.loadEnrollmentsFailure, (state, action) => state)
 );

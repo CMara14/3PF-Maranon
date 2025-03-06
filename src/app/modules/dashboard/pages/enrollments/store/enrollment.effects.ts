@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { EnrollmentActions } from './enrollment.actions';
 import { EnrollmentsService } from '../../../../../core/services/enrollments.service';
 
@@ -11,16 +11,12 @@ export class EnrollmentEffects {
 
   loadEnrollments$ = createEffect(() => {
     return this.actions$.pipe(
-      // Quiero escuchar solamente las acciones de tipo:
       ofType(EnrollmentActions.loadEnrollments),
-      // Y luego quiero ir a buscar las enrollments a mi base de datos
       concatMap(() =>
         this.enrollmentsService.getEnrollments().pipe(
-          // Si el servicio responde OK
           map((enrollments) =>
             EnrollmentActions.loadEnrollmentsSuccess({ data: enrollments })
           ),
-          // Si el servicio desponde ERROR
           catchError((error) =>
             of(EnrollmentActions.loadEnrollmentsFailure({ error }))
           )
@@ -31,16 +27,12 @@ export class EnrollmentEffects {
 
   createEnrollments$ = createEffect(() => {
     return this.actions$.pipe(
-      // Quiero escuchar solamente las acciones de tipo:
       ofType(EnrollmentActions.createEnrollment),
-      // Y luego quiero ir a buscar las enrollments a mi base de datos
       concatMap((action) =>
         this.enrollmentsService.createEnrollment(action.data).pipe(
-          // Si el servicio responde OK
           map((enrollment) =>
             EnrollmentActions.createEnrollmentSuccess({ data: enrollment })
           ),
-          // Si el servicio desponde ERROR
           catchError((error) =>
             of(EnrollmentActions.createEnrollmentFailure({ error }))
           )
@@ -49,20 +41,21 @@ export class EnrollmentEffects {
     );
   });
 
-  // loadEnrollments$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(EnrollmentActions.loadEnrollments),
-  //     concatMap(() =>
-  //       /** An EMPTY observable only emits completion. Replace with your own observable API request */
-  //       EMPTY.pipe(
-  //         map((data) => EnrollmentActions.loadEnrollmentsSuccess({ data })),
-  //         catchError((error) =>
-  //           of(EnrollmentActions.loadEnrollmentsFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+  deleteEnrollments$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentActions.deleteEnrollment),
+      concatMap((action) =>
+        this.enrollmentsService.deleteEnrollment(action.id).pipe(
+          map(() =>
+            EnrollmentActions.deleteEnrollmentSuccess({ id: action.id })
+          ),
+          catchError((error) =>
+            of(EnrollmentActions.deleteEnrollmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 
   constructor(private enrollmentsService: EnrollmentsService) {}
 }

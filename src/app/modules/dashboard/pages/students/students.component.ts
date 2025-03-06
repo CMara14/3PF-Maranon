@@ -86,7 +86,6 @@ export class StudentsComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.studentsService.deleteStudent(id).subscribe({
           next: (data) => {
-            console.log(data);
             this.handleStudentsDataUpdate(data);
           },
           error: (err) => {

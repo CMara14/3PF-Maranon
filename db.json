@@ -128,29 +128,22 @@
   ],
   "enrollments": [
     {
-      "id": "adc33D",
-      "studentId": "1vgs3",
-      "courseId": "svDFj3"
+      "id": "b0ea",
+      "student": "Martín Petersen",
+      "course": "Data Science",
+      "schedule": "Tarde"
     },
     {
-      "id": "c801",
-      "studentId": "gt8y4",
-      "courseId": "svDFs3"
+      "id": "7b29",
+      "student": "Brenda Collins",
+      "course": "Marketing",
+      "schedule": "Noche"
     },
     {
-      "id": "86fa",
-      "studentId": "b31e",
-      "courseId": "svDFj3"
-    },
-    {
-      "id": "e218",
-      "studentId": "hgt76",
-      "courseId": "svDFs3"
-    },
-    {
-      "id": "a751",
-      "courseId": "d0797184-10ab-478c-a266-10e2028cfca1",
-      "studentId": "87c71bcc-20b1-451f-b165-e234010d3f56"
+      "id": "7682",
+      "student": "Geraldine Duarte",
+      "course": "Inglés",
+      "schedule": "Mañana"
     }
   ]
 }

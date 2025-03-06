@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../../../core/services/users.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from './models';
 import { Store } from '@ngrx/store';
-import { selectUsers } from './store/user.selectors';
 
 @Component({
   selector: 'app-users',
@@ -13,14 +12,24 @@ import { selectUsers } from './store/user.selectors';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent {
-  users$: Observable<User[]>;
+  users: User[] = [];
+  usersSubscription?: Subscription;
 
   constructor(private usersService: UsersService,  private store: Store) {
-    this.users$ = this.store.select(selectUsers);
   }
   ngOnInit(): void {
     this.usersService.loadUsers();
   }
+
+  loadStudents(): void {
+      this.usersSubscription = this.usersService
+        .getUsers()
+        .subscribe({
+          next: (users: User[]) => {
+            this.users = [...users];
+          },
+        });
+    }
   
   ngOnDestroy(): void {
     this.usersService.resetUserState();

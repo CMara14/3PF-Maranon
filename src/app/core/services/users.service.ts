@@ -10,9 +10,9 @@ import { User } from '../../modules/dashboard/pages/users/models';
 export class UsersService {
   constructor(private httpClient: HttpClient, private store: Store) {}
 
-  getStudentUsers(): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(
-      `${environment.baseApiUrl}/users?role=STUDENT`
+      `${environment.baseApiUrl}/users`
     );
   }
  
