@@ -1,3 +1,5 @@
+<h2>Inscripciones</h2>
+
 <mat-spinner *ngIf="isLoading$ | async; else notLoadingTemplate" />
 
 <ng-template #notLoadingTemplate>
@@ -10,7 +12,7 @@
   <form
     [formGroup]="enrollmentForm"
     (ngSubmit)="onSubmit()"
-    class="grid formgrid w-12"
+    class="enrollment-form"
   >
     <div>
       <mat-form-field class="w-full">
@@ -45,7 +47,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="col-12 flex justify-content-end">
+    <div>
       <button type="submit" mat-flat-button>Crear inscripcion</button>
     </div>
   </form>

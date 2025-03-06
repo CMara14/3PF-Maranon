@@ -61,7 +61,7 @@
     },
     {
       "id": "avs3D",
-      "email": "employee@email.com",
+      "email": "user@email.com",
       "password": "user",
       "name": "Usuario",
       "accessToken": "90a6fe412b43446dfb144984cc54b16a494a439ea257f08b7bd170537ec3d7a1",

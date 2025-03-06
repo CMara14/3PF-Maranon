@@ -5,8 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentsFormComponent } from './components/students-form/students-form.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { StudentsService } from '../../../../core/services/students.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-students',
@@ -23,12 +24,16 @@ export class StudentsComponent implements OnInit, OnDestroy {
   isLoading = false;
   error = false;
   studentsSubscription?: Subscription;
+  isAdmin$: Observable<boolean>;
   constructor(
     private fb: FormBuilder,
     private matDialog: MatDialog,
     private snackBar: MatSnackBar,
-    private studentsService: StudentsService
-  ) {}
+    private studentsService: StudentsService,
+    private authService: AuthService
+  ) {
+    this.isAdmin$ = this.authService.isAdmin$;
+  }
 
   ngOnDestroy(): void {
     this.studentsSubscription?.unsubscribe();
@@ -40,21 +45,19 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   loadStudents(): void {
     this.isLoading = true;
-    this.studentsSubscription = this.studentsService
-      .getStudents()
-      .subscribe({
-        next: (students: Student[]) => {
-          this.students = [...students];
-          this.isLoading = false;
-        },
-        error: (error) => {
-          this.error = true;
-          this.isLoading = false;
-        },
-        complete: () => {
-          this.isLoading = false;
-        },
-      });
+    this.studentsSubscription = this.studentsService.getStudents().subscribe({
+      next: (students: Student[]) => {
+        this.students = [...students];
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.error = true;
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
   }
 
   showNotification(message: string): void {
@@ -102,9 +105,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   openFormDialog(student?: Student): void {
     this.matDialog
-    .open(StudentsFormComponent, {
-      data: student,
-    })
+      .open(StudentsFormComponent, {
+        data: student,
+      })
       .afterClosed()
       .subscribe({
         next: (data) => {
@@ -119,21 +122,22 @@ export class StudentsComponent implements OnInit, OnDestroy {
       });
   }
 
-  handleEditStudent(id: string, data: {
-    name: string;
-    lastName: string;
-    email: string;
-    phoneNumber: number;
-  }) {
+  handleEditStudent(
+    id: string,
+    data: {
+      name: string;
+      lastName: string;
+      email: string;
+      phoneNumber: number;
+    }
+  ) {
     this.isLoading = true;
     this.studentsService.updateStudent(id, data).subscribe({
       next: (data) => this.handleStudentsDataUpdate(data),
       error: (err) => (this.isLoading = false),
       complete: () => {
-        this.isLoading = false
-        this.showNotification(
-          'El estudiante ha sido actualizado con éxito.'
-        );
+        this.isLoading = false;
+        this.showNotification('El estudiante ha sido actualizado con éxito.');
       },
     });
   }
@@ -149,10 +153,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
       next: (data) => this.handleStudentsDataUpdate(data),
       error: (err) => (this.isLoading = false),
       complete: () => {
-        this.isLoading = false
+        this.isLoading = false;
         this.showNotification('El estudiante ha sido creado con éxito.');
       },
-      
     });
   }
 }
