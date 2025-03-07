@@ -1,22 +1,62 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { concatMap } from 'rxjs/operators';
-import { Observable, EMPTY } from 'rxjs';
+import { catchError, concatMap, map } from 'rxjs/operators';
 import { UserActions } from './user.actions';
+import { UsersService } from '../../../../../core/services/users.service';
+import { of } from 'rxjs';
 
 @Injectable()
 export class UserEffects {
-
+  private actions$ = inject(Actions);
 
   loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
-
       ofType(UserActions.loadUsers),
-      /** An EMPTY observable only emits completion. Replace with your own observable API request */
-      concatMap(() => EMPTY as Observable<{ type: string }>)
+      concatMap(() =>
+        this.usersService.getUsers().pipe(
+          map((users) =>
+            UserActions.loadUsersSuccess({ data: users })
+          ),
+          catchError((error) =>
+            of(UserActions.loadUsersFailure({ error }))
+          )
+        )
+      )
     );
   });
 
-  constructor(private actions$: Actions) {}
+    createUser$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(UserActions.createUser),
+        concatMap((action) =>
+          this.usersService.createUser(action.data).pipe(
+            map((user) =>
+              UserActions.createUserSuccess({ data: user })
+            ),
+            catchError((error) =>
+              of(UserActions.createUserFailure({ error }))
+            )
+          )
+        )
+      );
+    });
+
+  deleteUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.deleteUserById),
+      concatMap((action) =>
+        this.usersService.deleteUserById(action.id).pipe(
+          map(() =>
+            UserActions.deleteUserByIdSuccess({ id: action.id })
+          ),
+          catchError((error) =>
+            of(UserActions.deleteUserByIdFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  constructor(private usersService: UsersService) {}
 }
