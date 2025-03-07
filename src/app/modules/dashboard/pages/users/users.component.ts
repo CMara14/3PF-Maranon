@@ -51,17 +51,19 @@ export class UsersComponent {
       .afterClosed()
       .subscribe({
         next: (data) => {
-          this.store.dispatch(
-            UserActions.createUser({
-              data: {
-                name: data.name,
-                email: data.email,
-                role: data.role,
-                password: data.password,
-                accessToken: uuidv6(),
-              },
-            })
-          );
+          if (!!data) {
+            this.store.dispatch(
+              UserActions.createUser({
+                data: {
+                  name: data.name,
+                  email: data.email,
+                  role: data.role,
+                  password: data.password,
+                  accessToken: uuidv6(),
+                },
+              })
+            );
+          }
         },
       });
   }

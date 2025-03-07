@@ -1,32 +1,28 @@
 .enrollment-form {
     display: flex;
-    flex-wrap: wrap; /* Para que los elementos bajen si no hay espacio */
-    gap: 1rem; /* Espaciado entre elementos */
+    flex-wrap: wrap;
+    gap: 1rem;
     width: 100%;
-    justify-content: space-between; /* Espacia los elementos */
+    justify-content: space-between;
     align-items: center;
-    background-color: blueviolet;
-    padding: 1rem; /* Añadir un poco de margen interno */
+    background-color: #3E5879;
+    padding: 1rem;
     margin-bottom: 20px;
     border-radius: 20px;
   }
   
-//   .enrollment-form div {
-//     flex: 1; /* Hace que cada div ocupe el mismo espacio disponible */
-//     min-width: 250px; /* Asegura que no se colapsen si hay poco espacio */
-//   }
 .enrollment-form div {
-    flex: 1; /* Hace que cada div ocupe un espacio igual */
-    min-width: 250px; /* Para evitar que colapsen en pantallas pequeñas */
-    max-width: 400px; /* Opcional: evitar que los elementos sean demasiado anchos */
+    flex: 1; 
+    min-width: 250px;
+    max-width: 400px; 
     display: flex;
-    flex-direction: column; /* Mantiene los mat-form-field alineados */
+    flex-direction: column; 
   }
   
   .enrollment-form .form-actions {
     width: 100%;
     display: flex;
-    justify-content: center; /* Centra el botón */
+    justify-content: center;
     margin-top: 1rem;
   }
 

@@ -12,7 +12,6 @@ import { User } from '../../models';
 })
 export class UsersFormComponent {
   userForm: FormGroup;
-  isEditing: boolean = false;
   roles: string[] = ['ADMIN', 'EMPLOYEE'];
 
   constructor(
@@ -33,7 +32,6 @@ export class UsersFormComponent {
       this.userForm.markAllAsTouched();
     } else {
       this.matDialogRef.close(this.userForm.value);
-      this.userForm.reset();
     }
   }
 }

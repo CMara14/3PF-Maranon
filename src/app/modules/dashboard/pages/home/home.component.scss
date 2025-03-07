@@ -1,0 +1,9 @@
+body {
+    background-image: url("../../../../../assets/home.jpg");
+    background-size: cover;
+    background-position: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 64px;
+    height: calc(100vh - 64px); /* Resta la altura del toolbar */
+}

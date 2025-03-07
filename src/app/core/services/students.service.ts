@@ -24,8 +24,9 @@ export class StudentsService {
   }
 
   deleteStudent(id: string): Observable<Student[]> {
-    data = data.filter((student) => student.id != id);
-    return this.getStudents();
+    return this.httpClient
+    .delete<Student>(`${environment.baseApiUrl}/students/${id}`)
+    .pipe(concatMap(() => this.getStudents()));
   }
 
   updateStudent(
