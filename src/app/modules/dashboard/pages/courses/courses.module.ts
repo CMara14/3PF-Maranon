@@ -9,7 +9,11 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { SharedModule } from '../../../../shared/shared.module';
 
 @NgModule({
-  declarations: [CoursesComponent, CourseDetailComponent, CourseFormComponent, CoursesListComponent],
+  declarations: [
+    CoursesComponent,
+     CourseDetailComponent,
+      CourseFormComponent
+      , CoursesListComponent],
   imports: [CommonModule, CoursesRoutingModule, SharedModule],
   exports: [CoursesComponent],
 })
